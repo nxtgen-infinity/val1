@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special ❤️</title>
+
+<style>
+body{
+ margin:0;
+ font-family:'Segoe UI',sans-serif;
+ background:black;
+ color:white;
+ text-align:center;
+ overflow-x:hidden;
+ overflow-y:hidden; /* disable scroll during intro */
+}
+
+/* INTRO */
+#intro{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:black;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ font-size:22px;
+ font-family:monospace;
+}
+
+/* MAIN */
+#main{
+ display:none;
+ background:linear-gradient(135deg,#ff5f8f,#ff8fb1);
+ min-height:100vh;
+ padding:40px 20px;
+}
+
+h1{font-size:3em;}
+
+.box{
+ background:rgba(255,255,255,0.15);
+ padding:25px;
+ border-radius:20px;
+ max-width:700px;
+ margin:25px auto;
+ backdrop-filter:blur(10px);
+ box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+img{
+ width:220px;
+ height:220px;
+ object-fit:cover;
+ border-radius:20px;
+ margin:10px;
+}
+
+/* typing cursor */
+#cursor{
+ font-weight:bold;
+ animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+/* floating hearts */
+.heart{
+ position:fixed;
+ color:red;
+ font-size:24px;
+ animation:float 5s linear infinite;
+}
+@keyframes float{
+ from{transform:translateY(100vh);}
+ to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="intro">
+<p id="hack"></p>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="main">
+
+<h1>Hey <span style="color:yellow;">Tulika</span> ❤️</h1>
+<p>I made this just for you...</p>
+
+<div class="box">
+<h2>My Message For You 💌</h2>
+<p><span id="typing"></span><span id="cursor">|</span></p>
+</div>
+
+<div class="box">
+<h2>Our Cute Memories 📸</h2>
+
+<!-- ⚠️ KEEP FILES IN SAME FOLDER -->
+<img src="WhatsApp Image 2026-02-14 at 6.59.23 AM.jpeg">
+<img src="WhatsApp Image 2026-02-14 at 7.00.42 AM.jpeg">
+
+<video width="320" controls>
+ <source src="WhatsApp Video 2026-02-14 at 7.00.42 AM.mp4" type="video/mp4">
+</video>
+
+</div>
+
+</div>
+
+<!-- background music -->
+<audio autoplay loop>
+<source src="girl in red - You will be my girl (we fell in love in October) (Lyrics).mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* INTRO typing */
+let introText="Accessing heart...\nScanning feelings...\nCrush detected: Tulika ❤️\nOpening message...";
+let i=0;
+
+function hack(){
+ if(i<introText.length){
+  document.getElementById("hack").innerHTML+=introText.charAt(i);
+  i++;
+  setTimeout(hack,40);
+ }else{
+  setTimeout(()=>{
+   document.getElementById("intro").style.display="none";
+   document.getElementById("main").style.display="block";
+   document.body.style.overflowY="auto"; // enable scroll after intro
+   startTyping();
+  },1000);
+ }
+}
+hack();
+
+/* LOVE MESSAGE typing */
+let msg="I just want you to know that you’re important to me. Your presence makes my day better. I respect you and admire you. Being around you makes everything lighter and happier. You truly matter to me. ❤️";
+let j=0;
+
+function startTyping(){
+ function type(){
+  if(j<msg.length){
+   document.getElementById("typing").innerHTML+=msg.charAt(j);
+   j++;
+   setTimeout(type,35);
+  }
+ }
+ type();
+}
+
+/* floating hearts */
+setInterval(()=>{
+ const h=document.createElement("div");
+ h.classList.add("heart");
+ h.innerHTML="❤";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),5000);
+},300);
+</script>
+
+</body>
+</html>
